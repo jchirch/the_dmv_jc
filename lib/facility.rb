@@ -18,7 +18,10 @@ class Facility
     if @services.include?('Vehicle Registration')
       @registered_vehicles << vehicle
       vehicle.set_registration_date
-    #assign a date to registration
+      vehicle.set_plate_type
+      @collected_fees += vehicle.plate_fees
     end
   end
+
+  
 end

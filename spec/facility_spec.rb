@@ -57,12 +57,19 @@ RSpec.describe Facility do
       @facility_1.register_vehicle(@cruz)
       expect(@cruz.registration_date).to eq(Date.today)
     end
-
   end
 
   describe '#payment' do
     it 'can access collected fees' do
       expect(@facility_1.collected_fees).to eq(0)
+    end
+
+    it 'can collect fees' do
+      @facility_1.add_service('Vehicle Registration')
+      @facility_1.register_vehicle(@bolt)
+      @facility_1.register_vehicle(@camaro)      
+      @facility_1.register_vehicle(@cruz)
+      expect(@facility_1.collected_fees).to eq(325)
     end
   end
 end
