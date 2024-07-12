@@ -1,6 +1,7 @@
 require 'spec_helper'
 require './lib/facility'
 require './lib/vehicle'
+require './lib/registrant'
 
 RSpec.describe Facility do
   before(:each) do
@@ -9,6 +10,9 @@ RSpec.describe Facility do
     @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
     @bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
     @camaro = Vehicle.new({vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice} )
+    @registrant_1 = Registrant.new('Bruce', 18, true)
+    @registrant_2 = Registrant.new('Penny', 16)
+    @registrant_3 = Registrant.new('Tucker', 15)
 
   end
   describe '#initialize' do
@@ -29,7 +33,8 @@ RSpec.describe Facility do
       @facility_1.add_service('New Drivers License')
       @facility_1.add_service('Renew Drivers License')
       @facility_1.add_service('Vehicle Registration')
-      expect(@facility_1.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])
+      @facility_1.add_service('Written Test')
+      expect(@facility_1.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration', "Written Test"])
     end
   end
 
@@ -46,7 +51,7 @@ RSpec.describe Facility do
       expect(@facility_1.registered_vehicles).to eq([@cruz])
     end
 
-    it 'cannot register if facility does not have the service' do
+    it 'cannot register unless facility has the service' do
       @facility_1.register_vehicle(@cruz)
       expect(@facility_1.services).to eq([])
       expect(@facility_1.registered_vehicles).to eq([])
@@ -70,6 +75,16 @@ RSpec.describe Facility do
       @facility_1.register_vehicle(@camaro)      
       @facility_1.register_vehicle(@cruz)
       expect(@facility_1.collected_fees).to eq(325)
+    end
+  end
+
+  describe '#written test' do
+    it 'cannot administer written test registrant age >= 18 and has permit' do
+      expect(@facility_1.services).to eq([])
+      @facility_1.add_service('Vehicle Registration')
+      expect(@facility_1.administer_written_test(@registrant_1)).to be true
+      expect(@facility_1.administer_written_test(@registrant_2)).to be false
+      expect(@facility_1.administer_written_test(@registrant_3)).to be false
     end
   end
 end
