@@ -33,8 +33,7 @@ RSpec.describe Facility do
       @facility_1.add_service('New Drivers License')
       @facility_1.add_service('Renew Drivers License')
       @facility_1.add_service('Vehicle Registration')
-      @facility_1.add_service('Written Test')
-      expect(@facility_1.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration', "Written Test"])
+      expect(@facility_1.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])
     end
   end
 
@@ -79,12 +78,22 @@ RSpec.describe Facility do
   end
 
   describe '#written test' do
-    it 'cannot administer written test registrant age >= 18 and has permit' do
+    it 'cannot administer written test unless registrant is over 18 and has permit' do
       expect(@facility_1.services).to eq([])
-      @facility_1.add_service('Vehicle Registration')
+      @facility_1.add_service('Written Test')
       expect(@facility_1.administer_written_test(@registrant_1)).to be true
       expect(@facility_1.administer_written_test(@registrant_2)).to be false
       expect(@facility_1.administer_written_test(@registrant_3)).to be false
+    end
+  end
+
+  describe '#road test' do
+    it 'cannot administer road test unless registrant passed written test' do
+      expect(@facility_1.services).to eq([])
+      @facility_1.add_service('Written Test')
+      @facility_1.add_service('Road Test')
+      expect(@facility_1.administer_road_test(registrant_3))
+
     end
   end
 end
