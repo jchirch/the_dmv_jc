@@ -1,4 +1,6 @@
 require 'spec_helper'
+require './lib/facility'
+require './lib/vehicle'
 
 RSpec.describe Facility do
   before(:each) do
@@ -31,7 +33,7 @@ RSpec.describe Facility do
     end
 
     it 'can register a vehicle' do
-      expect(@facility_1.register_vehicle(cruz)).to be_an_instance_of(Vehicle)
+      expect(@facility_1.register_vehicle(@cruz)).to include(@cruz)
 
     end
   end
