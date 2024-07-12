@@ -15,7 +15,6 @@ class Facility
   end
 
   def register_vehicle(model)
-    # model_to_add = vehicle_details[:model]
     @registered_vehicles << model
   end
 end
