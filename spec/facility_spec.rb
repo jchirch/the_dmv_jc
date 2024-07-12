@@ -39,9 +39,17 @@ RSpec.describe Facility do
     end
 
     it 'can register a vehicle' do
+      @facility_1.add_service('Vehicle Registration')
       @facility_1.register_vehicle(@cruz)
+      expect(@facility_1.services).to eq(['Vehicle Registration'])
       expect(@facility_1.registered_vehicles[0]).to be_an_instance_of(Vehicle)
       expect(@facility_1.registered_vehicles).to eq([@cruz])
+    end
+
+    it 'cannot register if facility does not have the service' do
+      @facility_1.register_vehicle(@cruz)
+      expect(@facility_1.services).to eq([])
+      expect(@facility_1.registered_vehicles).to eq([])
     end
 
   end
