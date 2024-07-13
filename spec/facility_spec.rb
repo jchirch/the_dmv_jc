@@ -149,11 +149,17 @@ RSpec.describe Facility do
       @facility_1.add_service('Road Test')
       @facility_1.add_service('License Renewal')
       expect(@facility_1.administer_license_renewal(@registrant_1)).to be false
-      # expect(@registrant_1.license_data[:renewed]).to be false
-      
-
-
+      @facility_1.administer_written_test(@registrant_1)
+      @facility_1.administer_road_test(@registrant_1)
+      expect(@facility_1.administer_license_renewal(@registrant_1)).to be true
     end
+
+    it 'updates license renewed data with method' do
+      expect(@registrant_1.license_data[:renewed]).to be false
+      @registrant_1.renew_license
+      expect(@registrant_1.license_data[:renewed]).to be true
+    end
+
   end
 
 end
