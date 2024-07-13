@@ -2,9 +2,21 @@ require 'dmv_data_service'
 
 class VehicleFactory
 
-    # def initialize
+    def initialize
 
-    # end
+    end
+
+    def create_vehicles(dmv_registrations)
+        dmv_registrations.map do |registration|
+            vehicle_data = {}
+            vehicle_data[:vin] = registration[vin_1_10]
+            vehicle_data[:engine] = :ev
+            # repeat for all desired
+            Vehicle.new(vehicle_data)
+
+        end
+
+    end
 
 #make a method called create_vehicles that takes a 
 # DmvDataService API info as argument.
