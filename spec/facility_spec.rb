@@ -83,13 +83,19 @@ RSpec.describe Facility do
       expect(@facility_1.services).to eq([])
       expect(@facility_1.administer_written_test(@registrant_1)).to be false
     end
-    
+
     it 'cannot administer written test unless registrant is over 16 and has permit' do
       expect(@facility_1.services).to eq([])
       @facility_1.add_service('Written Test')
       expect(@facility_1.administer_written_test(@registrant_1)).to be true
       expect(@facility_1.administer_written_test(@registrant_2)).to be false
       expect(@facility_1.administer_written_test(@registrant_3)).to be false
+    end
+
+    it 'updates license data when passes written test' do
+      expect(@registrant_1.license_data[:license]).to be false
+      @registrant_1.pass_written
+      expect(@registrant_1.license_data[:license]).to be true
     end
   end
 
