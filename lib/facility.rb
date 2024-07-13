@@ -24,7 +24,7 @@ class Facility
   end
 
     def administer_written_test(registrant)
-      if registrant.age >= 16 && registrant.permit? == true
+      if @services.include?('Written Test') && registrant.age >= 16 && registrant.permit? == true
         true
       else
         false

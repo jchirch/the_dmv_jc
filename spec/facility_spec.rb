@@ -15,6 +15,7 @@ RSpec.describe Facility do
     @registrant_3 = Registrant.new('Tucker', 15)
 
   end
+
   describe '#initialize' do
     it 'can initialize' do
       expect(@facility_1).to be_an_instance_of(Facility)
@@ -78,6 +79,11 @@ RSpec.describe Facility do
   end
 
   describe '#written test' do
+    it 'cannot administer written test unless facility has the service' do
+      expect(@facility_1.services).to eq([])
+      expect(@facility_1.administer_written_test(@registrant_1)).to be false
+    end
+    
     it 'cannot administer written test unless registrant is over 16 and has permit' do
       expect(@facility_1.services).to eq([])
       @facility_1.add_service('Written Test')
@@ -96,9 +102,15 @@ RSpec.describe Facility do
       expect(@facility_1.administer_road_test(@registrant_2)).to be false
       expect(@facility_1.administer_road_test(@registrant_3)).to be false
     end
-    it 'earns license if qualify for road test' do
-
-
+    
+    xit 'earns license if qualifies for road test' do
+      # require 'pry'; binding.pry
+      @facility_1.add_service('Written Test')
+      @facility_1.add_service('Road Test')
+      @facility_1.administer_road_test(@registrant_1)
+      @facility1.administer_written_test(@registrant_1)
+      expect(@registrant_1.license?).to be true
+      
     end
   end
 
@@ -107,4 +119,5 @@ RSpec.describe Facility do
 
     end
   end
+
 end
