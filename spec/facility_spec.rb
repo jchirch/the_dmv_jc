@@ -93,9 +93,11 @@ RSpec.describe Facility do
     end
 
     it 'updates license data when passes written test' do
-      expect(@registrant_1.license_data[:license]).to be false
+      @facility_1.add_service('Written Test')
+      expect(@registrant_1.license_data[:written]).to be false
+      @facility_1.administer_written_test(@registrant_1)
       @registrant_1.pass_written
-      expect(@registrant_1.license_data[:license]).to be true
+      expect(@registrant_1.license_data[:written]).to be true
     end
   end
 
@@ -108,8 +110,9 @@ RSpec.describe Facility do
       expect(@facility_1.administer_road_test(@registrant_2)).to be false
       expect(@facility_1.administer_road_test(@registrant_3)).to be false
     end
+    # add pass_road method and test similarly to pass_written
     
-    xit 'earns license if qualifies for road test' do
+    it 'earns license if qualifies for road test' do
       # require 'pry'; binding.pry
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')

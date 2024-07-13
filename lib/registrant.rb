@@ -24,4 +24,8 @@ class Registrant
     def license?
         @license_data[:license]
     end
+
+    def pass_written
+        @license_data[:written] = true
+    end
 end
