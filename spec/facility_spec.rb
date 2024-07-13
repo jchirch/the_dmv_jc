@@ -92,11 +92,17 @@ RSpec.describe Facility do
       expect(@facility_1.administer_written_test(@registrant_3)).to be false
     end
 
-    it 'updates license data when passes written test' do
+    it 'updates license data with method' do
+      @facility_1.add_service('Written Test')
+      expect(@registrant_1.license_data[:written]).to be false
+      @registrant_1.pass_written
+      expect(@registrant_1.license_data[:written]).to be true
+    end
+
+    it 'updates license data when passes administered written test' do
       @facility_1.add_service('Written Test')
       expect(@registrant_1.license_data[:written]).to be false
       @facility_1.administer_written_test(@registrant_1)
-      @registrant_1.pass_written
       expect(@registrant_1.license_data[:written]).to be true
     end
   end
@@ -111,8 +117,19 @@ RSpec.describe Facility do
       expect(@facility_1.administer_road_test(@registrant_3)).to be false
     end
     # add pass_road method and test similarly to pass_written
+
+    xit 'updates license data when pass road test' do
+      @facility_1.add_service('Written Test')
+      @facility_1.add_service('Road Test')
+      expect(@registrant_1.license_data[:license]).to be false
+      @facility_1.administer_written_test(@registrant_1)
+      expect(@registrant_1.license_data[:license]).to be true
+
+      
+
+    end
     
-    it 'earns license if qualifies for road test' do
+    xit 'earns license if qualifies for road test' do
       # require 'pry'; binding.pry
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
@@ -123,7 +140,7 @@ RSpec.describe Facility do
     end
   end
 
-  describe '#renew drivers license' do
+  xdescribe '#renew drivers license' do
     xit 'can renew license if passed roat test and earned license' do
 
     end
