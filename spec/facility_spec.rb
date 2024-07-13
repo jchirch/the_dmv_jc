@@ -118,6 +118,13 @@ RSpec.describe Facility do
     end
     # add pass_road method and test similarly to pass_written
 
+    it 'updates license data with method' do
+      expect(@registrant_1.license_data[:license]).to be false
+      @registrant_1.pass_road
+      expect(@registrant_1.license_data[:license]).to be true
+
+    end
+
     xit 'updates license data when pass road test' do
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
