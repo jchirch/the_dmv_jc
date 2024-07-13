@@ -34,6 +34,7 @@ class Facility
 
     def administer_road_test(registrant)
       if administer_written_test(registrant) == true
+        registrant.pass_road
         true
       else
         false
