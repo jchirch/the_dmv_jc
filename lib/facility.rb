@@ -41,4 +41,14 @@ class Facility
       end
     end
   
+    def administer_license_renewal(registrant)
+      if @services.include?('License Renewal') && registrant.license? == true && administer_road_test(registrant) == true
+        registrant.renew_license
+        true
+      else
+        false
+      end
+    end
 end
+
+# if @services.include?('License Renewal') && registrant.license_data[:license] == true && administer_road_test(registrant) == true
