@@ -131,16 +131,6 @@ RSpec.describe Facility do
       @facility_1.administer_road_test(@registrant_1)
       expect(@registrant_1.license_data[:license]).to be true
     end
-    
-    #--Is this test necessary?---------------------------
-    # xit 'earns license if qualifies for road test' do
-    #   # require 'pry'; binding.pry
-    #   @facility_1.add_service('Written Test')
-    #   @facility_1.add_service('Road Test')
-    #   @facility_1.administer_road_test(@registrant_1)
-    #   @facility1.administer_written_test(@registrant_1)
-    #   expect(@registrant_1.license?).to be true  
-    # end
   end
 
   describe '#renew drivers license' do
@@ -181,7 +171,5 @@ RSpec.describe Facility do
       @facility_1.renew_drivers_license(@registrant_3)
       expect(@registrant_3.license_data[:renewed]).to be false
     end
-
   end
-
 end

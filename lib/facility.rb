@@ -50,5 +50,3 @@ class Facility
       end
     end
 end
-
-# if @services.include?('License Renewal') && registrant.license_data[:license] == true && administer_road_test(registrant) == true

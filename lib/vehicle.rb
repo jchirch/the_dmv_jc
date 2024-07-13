@@ -50,5 +50,4 @@ class Vehicle
       100
     end
   end
-
 end

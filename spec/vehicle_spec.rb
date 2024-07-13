@@ -44,6 +44,5 @@ RSpec.describe Vehicle do
       expect(@bolt.plate_type).to eq(:ev)
       expect(@camaro.plate_type).to eq(:antique)
     end
-
   end
 end
