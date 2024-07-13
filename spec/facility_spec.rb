@@ -96,11 +96,14 @@ RSpec.describe Facility do
       expect(@facility_1.administer_road_test(@registrant_2)).to be false
       expect(@facility_1.administer_road_test(@registrant_3)).to be false
     end
+    it 'earns license if passes road test' do
+      
+    end
   end
 
   describe '#renew drivers license' do
-    it 'can renew license if passed roat test and earned license' do
-      
+    xit 'can renew license if passed roat test and earned license' do
+
     end
   end
 end
