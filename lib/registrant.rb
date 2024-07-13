@@ -20,4 +20,8 @@ class Registrant
     def earn_permit
         @permit = true
     end
+
+    def license?
+        @license_data[:license]
+    end
 end
