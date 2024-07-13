@@ -145,6 +145,13 @@ RSpec.describe Facility do
 
   describe '#renew drivers license' do
     it 'can only renew license if passed road test and earned license' do
+      @facility_1.add_service('Written Test')
+      @facility_1.add_service('Road Test')
+      @facility_1.add_service('License Renewal')
+      expect(@facility_1.administer_license_renewal(@registrant_1)).to be false
+      # expect(@registrant_1.license_data[:renewed]).to be false
+      
+
 
     end
   end
