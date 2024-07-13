@@ -92,7 +92,9 @@ RSpec.describe Facility do
       expect(@facility_1.services).to eq([])
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
-      expect(@facility_1.administer_road_test(registrant_3)).to be false
+      expect(@facility_1.administer_road_test(@registrant_1)).to be true
+      expect(@facility_1.administer_road_test(@registrant_2)).to be false
+      expect(@facility_1.administer_road_test(@registrant_3)).to be false
 
     end
   end
