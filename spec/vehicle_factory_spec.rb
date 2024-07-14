@@ -7,15 +7,15 @@ RSpec.describe VehicleFactory do
         @wa_ev_registrations = DmvDataService.new.wa_ev_registrations
         @factory = VehicleFactory.new
 
-        
     end
 
     it 'exists' do
         expect(@factory).to be_an_instance_of(VehicleFactory)
     end
 
-    it 'converts data to vehicle class terminology' do
-        expect(@factory.create_vehicles(@wa_ev_registrations)).to be_an_instance_of(Vehicle)
+    it 'method converts data to vehicle class terminology' do
+        expect(@factory.create_vehicles(@wa_ev_registrations)[0]).to be_an_instance_of(Vehicle)
+
         # require 'pry'; binding.pry
     end
 
