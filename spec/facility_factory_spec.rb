@@ -44,6 +44,9 @@ RSpec.describe FacilityFactory do
         expect(create_a_facility.address).to eq("1815 E JERICHO TURNPIKE HUNTINGTON NY 11743")
     end
 
+    it 'converts all input data to same ammount of facility objects' do
+        expect(@ny_dmv_office_locations.length).to eq(@factory.create_co_facility(@ny_dmv_office_locations).length)
+    end
     end
     
     
