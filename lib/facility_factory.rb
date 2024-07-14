@@ -4,7 +4,7 @@ class FacilityFactory
 
     end
 
-    def create_facility(dmv_locations)
+    def create_co_facility(dmv_locations)
         dmv_locations.map do |location|
             location_data = {}
 
@@ -15,4 +15,7 @@ class FacilityFactory
             Facility.new(location_data)
         end
     end
+
+    
+
 end
