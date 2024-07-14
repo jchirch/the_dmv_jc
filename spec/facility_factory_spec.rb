@@ -19,6 +19,9 @@ RSpec.describe FacilityFactory do
         expect(create_a_facility.phone).to eq("(720) 865-4600")
     end
 
+    it 'converts all input data to same ammount of facility objects' do
+        expect(@co_dmv_office_locations.length).to eq(@factory.create_facility(@co_dmv_office_locations).length)
+    end
     
     # it 'converts data to vehicle class object with method' do
     #     expect(@factory.create_facility(@co_dmv_office_locations)).to be_an_instance_of(FacilityFactory) 
