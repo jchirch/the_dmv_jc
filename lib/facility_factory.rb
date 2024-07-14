@@ -16,6 +16,8 @@ class FacilityFactory
         end
     end
 
-    
+    def create_ny_facility(dmv_locations)
+        
+    end
 
 end
