@@ -5,7 +5,6 @@ require './lib/dmv_data_service'
 RSpec.describe FacilityFactory do
     before(:each) do
         @co_dmv_office_locations = DmvDataService.new.co_dmv_office_locations 
-        # .length = 5
         @factory = FacilityFactory.new
     end
 
