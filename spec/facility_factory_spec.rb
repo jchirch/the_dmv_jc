@@ -38,16 +38,35 @@ RSpec.describe FacilityFactory do
 
     it 'facility has correct attributes' do
         create_a_facility = @factory.create_ny_facility(@ny_dmv_office_locations)[0]
-
+        facilities = @factory.create_ny_facility(@ny_dmv_office_locations)
         expect(create_a_facility.name).to eq("HUNTINGTON")
         expect(create_a_facility.phone).to eq("7184774820")
         expect(create_a_facility.address).to eq("1815 E JERICHO TURNPIKE HUNTINGTON NY 11743")
+        facilities.each do |x|
+            expect(x.name).to be_truthy
+            expect(x.phone).to be_truthy
+            expect(x.address).to be_truthy
+
+
+
+        end
     end
 
     it 'converts all input data to same ammount of facility objects' do
         expect(@ny_dmv_office_locations.length).to eq(@factory.create_co_facility(@ny_dmv_office_locations).length)
     end
     end
-    
-    
+
+    describe '#create_mo_facility' do
+    before(:each) do
+        @mo_dmv_office_locations = DmvDataService.new.mo_dmv_office_locations
+        @factory = FacilityFactory.new
+    end
+
+    it 'exists' do
+        expect(@factory).to be_an_instance_of(FacilityFactory)
+    end
+
+
+    end
 end

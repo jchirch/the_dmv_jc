@@ -19,6 +19,7 @@ class FacilityFactory
     def create_ny_facility(dmv_locations)
         dmv_locations.map do |location|
             location_data = {}
+            location.default = "N/A"
 
             location_data[:name] = location[:office_name]
             location_data[:phone] = location[:public_phone_number]
