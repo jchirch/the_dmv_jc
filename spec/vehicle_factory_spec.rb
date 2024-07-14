@@ -14,6 +14,11 @@ RSpec.describe VehicleFactory do
         expect(@factory).to be_an_instance_of(VehicleFactory)
     end
 
+    it 'converts data to vehicle class terminology' do
+        expect(@factory.create_vehicles(@wa_ev_registrations)).to be_an_instance_of(Vehicle)
+        # require 'pry'; binding.pry
+    end
+
     # it 'can create vehicles?' do
     #     expect(@factory.create_vehicles(wa_ev_registrations)).to 
     # end

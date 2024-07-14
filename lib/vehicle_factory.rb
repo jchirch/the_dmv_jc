@@ -9,18 +9,21 @@ class VehicleFactory
     def create_vehicles(dmv_registrations)
         dmv_registrations.map do |registration|
             vehicle_data = {}
-            vehicle_data[:vin] = registration[vin_1_10]
+            vehicle_data[:vin] = registration[:vin_1_10],
+            vehicle_data[:year] = registration[:model_year],
+            vehicle_data[:make] = registration[:make],
+            vehicle_data[:model] = registration[:model],
             vehicle_data[:engine] = :ev
+            # vehicle_data[:registration_date] = registration[:transaction_date],
+            # do registration date?
+            # dont do plate type
             # repeat for all desired
             Vehicle.new(vehicle_data)
-
         end
 
     end
 
-#make a method called create_vehicles that takes a 
-# DmvDataService API info as argument.
-# ex, create_vehicles(wa_ev_registrations)
+
 end
 
 # :electric_vehicle_type,
