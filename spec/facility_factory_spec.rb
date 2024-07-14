@@ -17,14 +17,11 @@ RSpec.describe FacilityFactory do
         create_a_facility = @factory.create_facility(@co_dmv_office_locations)[1]
 
         expect(create_a_facility.phone).to eq("(720) 865-4600")
+        expect(create_a_facility.name).to eq("DMV Northeast Branch")
+        expect(create_a_facility.address).to eq("4685 Peoria Street Suite 101 Denver CO 80239")
     end
 
     it 'converts all input data to same ammount of facility objects' do
         expect(@co_dmv_office_locations.length).to eq(@factory.create_facility(@co_dmv_office_locations).length)
     end
-    
-    # it 'converts data to vehicle class object with method' do
-    #     expect(@factory.create_facility(@co_dmv_office_locations)).to be_an_instance_of(FacilityFactory) 
-    # end
-# require 'pry'; binding.pry
 end
