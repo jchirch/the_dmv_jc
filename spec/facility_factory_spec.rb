@@ -31,9 +31,20 @@ RSpec.describe FacilityFactory do
         @ny_dmv_office_locations = DmvDataService.new.ny_dmv_office_locations
         @factory = FacilityFactory.new
     end
+
     it 'exists' do
         expect(@factory).to be_an_instance_of(FacilityFactory)
     end
-    
+
+    it 'facility has correct attributes' do
+        create_a_facility = @factory.create_ny_facility(@ny_dmv_office_locations)[0]
+
+        expect(create_a_facility.name).to eq("HUNTINGTON")
+        expect(create_a_facility.phone).to eq("7184774820")
+        expect(create_a_facility.address).to eq("1815 E JERICHO TURNPIKE HUNTINGTON NY 11743")
     end
+
+    end
+    
+    
 end
