@@ -33,7 +33,10 @@ class FacilityFactory
         dmv_locations.map do |location|
             location_data = {}
 
+            location_data[:name] = location[:name]
             location_data[:phone] = location[:phone]
+
+            Facility.new(location_data)
         end
     end
 end
