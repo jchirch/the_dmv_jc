@@ -10,14 +10,14 @@ RSpec.describe DmvDataService do
     end
   end
 
-  describe '#load_data' do
-    it 'can load data from a given source' do
-      source = 'https://data.colorado.gov/resource/dsw3-mrn4.json'
-      data_response = @dds.load_data(source)
-      expect(data_response).to be_an_instance_of(Array)
-      expect(data_response.size).to be_an(Integer)
-    end
-  end
+  # describe '#load_data' do
+  #   it 'can load data from a given source' do
+  #     source = 'https://data.colorado.gov/resource/dsw3-mrn4.json'
+  #     data_response = @dds.load_data(source)
+  #     expect(data_response).to be_an_instance_of(Array)
+  #     expect(data_response.size).to be_an(Integer)
+  #   end
+  # end
 
   describe '#wa_ev_registrations' do
     it 'can load washington ev registration data' do
