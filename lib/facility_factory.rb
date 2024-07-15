@@ -28,4 +28,12 @@ class FacilityFactory
             Facility.new(location_data)
         end
     end
+
+    def create_mo_facility(dmv_locations)
+        dmv_locations.map do |location|
+            location_data = {}
+
+            location_data[:phone] = location[:phone]
+        end
+    end
 end
