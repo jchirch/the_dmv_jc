@@ -60,8 +60,10 @@ RSpec.describe FacilityFactory do
     end
 
     it 'facility has correct attributes' do
-        create_a_facility = @factory.create_mo_facility(mo_dmv_office_locations)[0]
-        
+        create_a_facility = @factory.create_mo_facility(@mo_dmv_office_locations)[0]
+
+        expect(create_a_facility.name).to eq("FERGUSON-OFFICE CLOSED UNTIL FURTHER NOTICE")
+        expect(create_a_facility.phone).to eq("(314) 733-5316")
     end
     end
 end
