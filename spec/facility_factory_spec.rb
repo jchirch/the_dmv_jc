@@ -32,9 +32,9 @@ RSpec.describe FacilityFactory do
         @factory = FacilityFactory.new
     end
 
-    it 'exists' do
-        expect(@factory).to be_an_instance_of(FacilityFactory)
-    end
+    # it 'exists' do
+    #     expect(@factory).to be_an_instance_of(FacilityFactory)
+    # end
 
     it 'facility has correct attributes' do
         create_a_facility = @factory.create_ny_facility(@ny_dmv_office_locations)[0]
@@ -55,15 +55,20 @@ RSpec.describe FacilityFactory do
         @factory = FacilityFactory.new
     end
 
-    it 'exists' do
-        expect(@factory).to be_an_instance_of(FacilityFactory)
-    end
+    # it 'exists' do
+    #     expect(@factory).to be_an_instance_of(FacilityFactory)
+    # end
 
     it 'facility has correct attributes' do
         create_a_facility = @factory.create_mo_facility(@mo_dmv_office_locations)[0]
 
         expect(create_a_facility.name).to eq("FERGUSON-OFFICE CLOSED UNTIL FURTHER NOTICE")
         expect(create_a_facility.phone).to eq("(314) 733-5316")
+        expect(create_a_facility.address).to eq("10425 WEST FLORISSANT FERGUSON MO 63136")
     end
+
+    it 'converts all input data to same ammount of facility objects' do
+        expect(@mo_dmv_office_locations.length).to eq(@factory.create_mo_facility(@mo_dmv_office_locations).length)
+    end 
     end
 end
