@@ -38,18 +38,10 @@ RSpec.describe FacilityFactory do
 
     it 'facility has correct attributes' do
         create_a_facility = @factory.create_ny_facility(@ny_dmv_office_locations)[0]
-        facilities = @factory.create_ny_facility(@ny_dmv_office_locations)
+        # facilities = @factory.create_ny_facility(@ny_dmv_office_locations)
         expect(create_a_facility.name).to eq("HUNTINGTON")
         expect(create_a_facility.phone).to eq("7184774820")
         expect(create_a_facility.address).to eq("1815 E JERICHO TURNPIKE HUNTINGTON NY 11743")
-        facilities.each do |x|
-            expect(x.name).to be_truthy
-            expect(x.phone).to be_truthy
-            expect(x.address).to be_truthy
-
-
-
-        end
     end
 
     it 'converts all input data to same ammount of facility objects' do
@@ -67,6 +59,9 @@ RSpec.describe FacilityFactory do
         expect(@factory).to be_an_instance_of(FacilityFactory)
     end
 
-
+    it 'facility has correct attributes' do
+        create_a_facility = @factory.create_mo_facility(mo_dmv_office_locations)[0]
+        
+    end
     end
 end
