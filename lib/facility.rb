@@ -24,27 +24,27 @@ class Facility
   end
 
     def administer_written_test(registrant)
-      if @services.include?('Written Test') && registrant.age >= 16 && registrant.permit? == true
+      return false unless @services.include?('Written Test')
+      if registrant.age >= 16 && registrant.permit? == true
         registrant.pass_written
-        true
       else
         false
       end
     end
 
     def administer_road_test(registrant)
-      if @services.include?('Road Test') &&administer_written_test(registrant) == true
+      return false unless @services.include?('Road Test')
+      if administer_written_test(registrant) == true
         registrant.pass_road
-        true
       else
         false
       end
     end
   
     def renew_drivers_license(registrant)
-      if @services.include?('Renew License') && registrant.license? == true && administer_road_test(registrant) == true
+      return false unless @services.include?('Renew License')
+      if registrant.license? == true && administer_road_test(registrant) == true
         registrant.renew_license
-        true
       else
         false
       end
