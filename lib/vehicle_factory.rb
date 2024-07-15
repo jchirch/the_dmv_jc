@@ -7,6 +7,7 @@ class VehicleFactory
     def create_vehicles(dmv_registrations)
         dmv_registrations.map do |registration|
             vehicle_data = {}
+            registration.default = "N/A"
            
             vehicle_data[:vin] = registration[:vin_1_10]
             vehicle_data[:year] = registration[:model_year]
