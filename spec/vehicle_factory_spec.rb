@@ -38,6 +38,7 @@ RSpec.describe VehicleFactory do
         expect(create_vehicle.vin).to be_a(String)
         expect(create_vehicle.make).to be_a(String)
         expect(create_vehicle.model).to be_a(String)
+        expect(create_vehicle.engine).to be_a(Symbol)
         expect(create_vehicle.year).to be_a(String)
     end
 
