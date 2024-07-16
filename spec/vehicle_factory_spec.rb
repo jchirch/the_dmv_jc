@@ -40,4 +40,14 @@ RSpec.describe VehicleFactory do
         expect(create_vehicle.model).to be_a(String)
         expect(create_vehicle.year).to be_a(String)
     end
+
+    it 'creates objects with populated values' do
+        create_vehicle = @factory.create_vehicles(@wa_ev_registrations)[0]
+
+        expect(create_vehicle.vin).not_to be_empty
+        expect(create_vehicle.make).not_to be_empty
+        expect(create_vehicle.model).not_to be_empty
+        expect(create_vehicle.engine).not_to be_empty
+        expect(create_vehicle.year).not_to be_empty
+    end
 end
