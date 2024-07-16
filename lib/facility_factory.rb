@@ -1,7 +1,5 @@
 class FacilityFactory
-
     def initialize
-
     end
 
     # def create_co_facility(dmv_locations)
