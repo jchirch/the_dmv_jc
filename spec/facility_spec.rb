@@ -30,9 +30,11 @@ RSpec.describe Facility do
   describe '#add service' do
     it 'can add available services' do
       expect(@facility_1.services).to eq([])
+
       @facility_1.add_service('New Drivers License')
       @facility_1.add_service('Renew Drivers License')
       @facility_1.add_service('Vehicle Registration')
+
       expect(@facility_1.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])
     end
   end
@@ -45,6 +47,7 @@ RSpec.describe Facility do
     it 'can register a vehicle' do
       @facility_1.add_service('Vehicle Registration')
       @facility_1.register_vehicle(@cruz)
+
       expect(@facility_1.services).to eq(['Vehicle Registration'])
       expect(@facility_1.registered_vehicles[0]).to be_an_instance_of(Vehicle)
       expect(@facility_1.registered_vehicles).to eq([@cruz])
@@ -52,6 +55,7 @@ RSpec.describe Facility do
 
     it 'cannot register unless facility has the service' do
       @facility_1.register_vehicle(@cruz)
+
       expect(@facility_1.services).to eq([])
       expect(@facility_1.registered_vehicles).to eq([])
     end
@@ -59,6 +63,7 @@ RSpec.describe Facility do
     it 'can set a registration date' do
       @facility_1.add_service('Vehicle Registration')
       @facility_1.register_vehicle(@cruz)
+
       expect(@cruz.registration_date).to eq(Date.today)
     end
   end
@@ -73,6 +78,7 @@ RSpec.describe Facility do
       @facility_1.register_vehicle(@bolt)
       @facility_1.register_vehicle(@camaro)      
       @facility_1.register_vehicle(@cruz)
+
       expect(@facility_1.collected_fees).to eq(325)
     end
   end
@@ -85,7 +91,9 @@ RSpec.describe Facility do
 
     it 'cannot administer written test unless registrant is over 16 and has permit' do
       expect(@facility_1.services).to eq([])
+
       @facility_1.add_service('Written Test')
+
       expect(@facility_1.administer_written_test(@registrant_1)).to be true
       expect(@facility_1.administer_written_test(@registrant_2)).to be false
       expect(@facility_1.administer_written_test(@registrant_3)).to be false
@@ -93,15 +101,21 @@ RSpec.describe Facility do
 
     it 'updates license data with method' do
       @facility_1.add_service('Written Test')
+
       expect(@registrant_1.license_data[:written]).to be false
+
       @registrant_1.pass_written
+
       expect(@registrant_1.license_data[:written]).to be true
     end
 
     it 'updates license data when passes administered written test' do
       @facility_1.add_service('Written Test')
+
       expect(@registrant_1.license_data[:written]).to be false
+
       @facility_1.administer_written_test(@registrant_1)
+
       expect(@registrant_1.license_data[:written]).to be true
     end
   end
@@ -109,8 +123,10 @@ RSpec.describe Facility do
   describe '#road test' do
     it 'cannot administer road test unless registrant passed written test' do
       expect(@facility_1.services).to eq([])
+
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
+
       expect(@facility_1.administer_road_test(@registrant_1)).to be true
       expect(@facility_1.administer_road_test(@registrant_2)).to be false
       expect(@facility_1.administer_road_test(@registrant_3)).to be false
@@ -118,16 +134,21 @@ RSpec.describe Facility do
 
     it 'updates license data with method' do
       expect(@registrant_1.license_data[:license]).to be false
+
       @registrant_1.pass_road
+
       expect(@registrant_1.license_data[:license]).to be true
     end
 
     it 'updates license data when pass road test' do
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
+
       expect(@registrant_1.license_data[:license]).to be false
+
       @facility_1.administer_written_test(@registrant_1)
       @facility_1.administer_road_test(@registrant_1)
+      
       expect(@registrant_1.license_data[:license]).to be true
     end
   end
@@ -137,15 +158,20 @@ RSpec.describe Facility do
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
       @facility_1.add_service('Renew License')
+
       expect(@facility_1.renew_drivers_license(@registrant_1)).to be false
+
       @facility_1.administer_written_test(@registrant_1)
       @facility_1.administer_road_test(@registrant_1)
+
       expect(@facility_1.renew_drivers_license(@registrant_1)).to be true
     end
 
     it 'updates license renewed data with method' do
       expect(@registrant_1.license_data[:renewed]).to be false
+
       @registrant_1.renew_license
+
       expect(@registrant_1.license_data[:renewed]).to be true
     end
 
@@ -153,10 +179,13 @@ RSpec.describe Facility do
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
       @facility_1.add_service('Renew License')
+
       expect(@registrant_1.license_data[:renewed]).to be false
+
       @facility_1.administer_written_test(@registrant_1)
       @facility_1.administer_road_test(@registrant_1)
       @facility_1.renew_drivers_license(@registrant_1)
+
       expect(@registrant_1.license_data[:renewed]).to be true
     end
 
@@ -164,10 +193,13 @@ RSpec.describe Facility do
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
       @facility_1.add_service('Renew License')
+
       expect(@registrant_3.license_data[:renewed]).to be false
+
       @facility_1.administer_written_test(@registrant_3)
       @facility_1.administer_road_test(@registrant_3)
       @facility_1.renew_drivers_license(@registrant_3)
+
       expect(@registrant_3.license_data[:renewed]).to be false
     end
   end
