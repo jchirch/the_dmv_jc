@@ -31,4 +31,13 @@ RSpec.describe VehicleFactory do
         
         expect(@wa_ev_registrations.length).to eq(create_vehicle.length)
     end
+
+    it 'created objects are expected data type' do
+        create_vehicle = @factory.create_vehicles(@wa_ev_registrations)[0]
+        
+        expect(create_vehicle.vin).to be_a(String)
+        expect(create_vehicle.make).to be_a(String)
+        expect(create_vehicle.model).to be_a(String)
+        expect(create_vehicle.year).to be_a(String)
+    end
 end
