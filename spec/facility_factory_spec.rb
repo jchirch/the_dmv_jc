@@ -43,6 +43,22 @@ RSpec.describe FacilityFactory do
     it 'converts all input data to same ammount of facility objects' do
         expect(@ny_dmv_office_locations.length).to eq(@factory.create_ny_facility(@ny_dmv_office_locations).length)
     end
+
+    it 'created objects are expected data type' do
+        create_a_facility = @factory.create_ny_facility(@ny_dmv_office_locations)[0]
+
+        expect(create_a_facility.name).to be_a(String)
+        expect(create_a_facility.phone).to be_a(String)
+        expect(create_a_facility.address).to be_a(String)
+    end    
+
+    it 'creates objects with populated values' do
+        create_a_facility = @factory.create_ny_facility(@ny_dmv_office_locations)[0]
+
+        expect(create_a_facility.name).not_to be_empty
+        expect(create_a_facility.phone).not_to be_empty
+        expect(create_a_facility.address).not_to be_empty
+    end
     end
 
     describe '#create_mo_facility' do
@@ -62,5 +78,21 @@ RSpec.describe FacilityFactory do
     it 'converts all input data to same ammount of facility objects' do
         expect(@mo_dmv_office_locations.length).to eq(@factory.create_mo_facility(@mo_dmv_office_locations).length)
     end 
+
+        it 'created objects are expected data type' do
+            create_a_facility = @factory.create_mo_facility(@mo_dmv_office_locations)[0]
+
+        expect(create_a_facility.name).to be_a(String)
+        expect(create_a_facility.phone).to be_a(String)
+        expect(create_a_facility.address).to be_a(String)
+    end    
+
+    it 'creates objects with populated values' do
+        create_a_facility = @factory.create_mo_facility(@mo_dmv_office_locations)[0]
+
+        expect(create_a_facility.name).not_to be_empty
+        expect(create_a_facility.phone).not_to be_empty
+        expect(create_a_facility.address).not_to be_empty
+    end
     end
 end
